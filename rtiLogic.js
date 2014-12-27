@@ -351,7 +351,7 @@ function setSaveFile(contents, file_name, mime_type) {
 
 function toggleLang(){
     if (currentLang == 'en') {
-        currentLang = 'ta_IN'
+        currentLang = 'hi_IN'
     }else{
         currentLang = 'en'
     }
