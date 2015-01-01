@@ -212,12 +212,15 @@ function setup() {
         $( "#tipContainer" ).offset({top: $(this).offset().top - 100});
     });
 
-    $( "#btnGenerate" ).click(function() {
+    $( "#btnGenerate" ).off().on('click',function() {
+        console.log('btn generate');
+		saveToLocalStorage();
         confirmrti();
     }); 
 
     //confirmrti();
     updateQuestions(listSubjectsindex);
+	loadFromLocalStorage();
 
     angular.element(document.getElementById('mainBody')).scope().refreshAll();
 };
@@ -245,14 +248,14 @@ function confirmrti() {
 
     var str = generate();
 
-    console.log(str);
+    //console.log(str);
 
     //var uriContent = "data:application/octet-stream," + encodeURIComponent(str);
 
     //window.open(uriContent, 'rti.html');
     //location.href = uriContent;
 
-    setSaveFile(str, "rti.html", "text/html");
+    setSaveFile(str, "rti.txt", "text/html");
 
     //$( "#saveButton" ).show();
     $('<div></div>').appendTo('body')
@@ -286,7 +289,7 @@ function generate() {
     var curr_year = d.getFullYear();
     var ddate = curr_date + "-" + curr_month + "-" + curr_year;
     str += ("<!DOCTYPE html><html>");
-    str += ("<head><style> h4 { padding: 0px; margin: 0px; } </style></head>")
+    str += ("<head><meta charset='UTF-8'><style> h4 { padding: 0px; margin: 0px; } </style></head>")
     str += applicationStr_01;
     str += applicationStr_02;
     str += applicationStr_03;
@@ -341,11 +344,20 @@ function generate() {
 }
 
 function setSaveFile(contents, file_name, mime_type) {
+    /*
     var a = document.getElementById('saveButton');
     mime_type = mime_type || 'application/octet-stream'; // text/html, image/png, et c
     if (file_name) a.setAttribute('download', file_name);
-    a.href = 'data:'+ mime_type +';base64,'+ btoa(contents || '');
+    //a.href = 'data:'+ mime_type +';base64,'+ btoa(contents || '');
+	a.href = 'data:'+ mime_type + ';charset=utf-8,' + encodeURIComponent((contents) || '');
+		
     a.click();
+    */
+
+    var blob = new Blob([contents], {type: "text/txt"});
+    //var converted = htmlDocx.asBlob(blob);
+    saveAs(blob, "rti.docx");
+
 }
 
 
@@ -356,6 +368,23 @@ function toggleLang(){
         currentLang = 'en'
     }
     setup(); 
+}
+
+function loadFromLocalStorage(){
+	$('#hongkiat-form').find(':input').each(function(){
+		if(!(this.id == "radioPovertyYes" ||this.id == "radioPovertyNo" ||this.id == "radioFeeCourtFee" ||this.id == "radioFeePostalOrder" ||this.id == "radioFeeDD" ||this.id == "btnGenerate" ||  this.id == "resetbtn")){
+			$(this).val(localStorage.getItem(this.id));
+		}
+	})
+}
+
+function saveToLocalStorage(){
+	$('#hongkiat-form').find(':input').each(function(){
+		if(!(this.id == "radioPovertyYes" ||this.id == "radioPovertyNo" ||this.id == "radioFeeCourtFee" ||this.id == "radioFeePostalOrder" ||this.id == "radioFeeDD" ||this.id == "btnGenerate" ||  this.id == "resetbtn")){
+			localStorage.setItem(this.id,this.value);
+		}
+	})
+
 }
 
 
