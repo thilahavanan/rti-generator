@@ -90,7 +90,7 @@ var listDetails = [
     ""
 ];
 
-var applicationStr_01 = "<body><h3><center>2005 में सूचना का अधिकार अधिनियम, के तहत जानकारी के लिए आवेदन</center></h3>";
+var applicationStr_01 = "<h3><center>2005 में सूचना का अधिकार अधिनियम, के तहत जानकारी के लिए आवेदन</center></h3>";
 var applicationStr_02 = "<पूर्व शैली = ' पाठ align: सही'> दिनांक:                          </pre>";
 var applicationStr_03 = "<h4>से</h4>";
 var applicationStr_04 = "<h4>को</h4>";

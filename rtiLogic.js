@@ -255,7 +255,7 @@ function confirmrti() {
     //window.open(uriContent, 'rti.html');
     //location.href = uriContent;
 
-    setSaveFile(str, "rti.txt", "text/html");
+    setSaveFile(str, "rti.docx", "text/html");
 
     //$( "#saveButton" ).show();
     $('<div></div>').appendTo('body')
@@ -288,75 +288,68 @@ function generate() {
     var curr_month = d.getMonth() + 1; //Months are zero based
     var curr_year = d.getFullYear();
     var ddate = curr_date + "-" + curr_month + "-" + curr_year;
-    str += ("<!DOCTYPE html><html>");
-    str += ("<head><meta charset='UTF-8'><style> h4 { padding: 0px; margin: 0px; } </style></head>")
-    str += applicationStr_01;
-    str += applicationStr_02;
+    str += applicationStr_01 + "\n";
+    str += applicationStr_02 + "\n";
     str += applicationStr_03;
-    str += ($("#txtName").val() + "<br/>");
-    str += ($("#txtAddress1").val() + "<br/>");
+    str += ($("#txtName").val() + "<br/>" + "\n");
+    str += ($("#txtAddress1").val() + "<br/>" + "\n");
     if ( $("#txtAddress2").val() != "") {
-        str += ($("#txtAddress2").val() + "<br/>");
+        str += ($("#txtAddress2").val() + "<br/>" + "\n");
     }
-    str += ($("#txtCity").val() + "<br/>");
-    str += ($("#txtState").val() + " - " + $("#txtPIN").val()  + "<br/><br/>");
+    str += ($("#txtCity").val() + "<br/>" + "\n");
+    str += ($("#txtState").val() + " - " + $("#txtPIN").val()  + "<br/><br/>" + "\n" + "\n");
     str += applicationStr_04;
-    str += applicationStr_05;
-    str += ($("#txtPIOOffice").val() + "<br/>");
-    str += ($("#txtPIOAddress1").val() + "<br/>");
+    str += applicationStr_05 + "\n";
+    str += ($("#txtPIOOffice").val() + "<br/>" + "\n");
+    str += ($("#txtPIOAddress1").val() + "<br/>" + "\n");
     if ( $("#txtPIOAddress2").val() != "") {
-        str += ($("#txtPIOAddress2").val() + "<br/>");
+        str += ($("#txtPIOAddress2").val() + "<br/>" + "\n");
     }
-    str += ($("#txtPIOCity").val() + "<br/>");
-    str += ($("#txtPIOState").val() + " - " + $("#txtPIOPIN").val()  + "<br/><br/>");
-    str += applicationStr_06;
-    str += applicationStr_07;
-    str += applicationStr_08;
+    str += ($("#txtPIOCity").val() + "<br/>" + "\n");
+    str += ($("#txtPIOState").val() + " - " + $("#txtPIOPIN").val()  + "<br/><br/>" + "\n" + "\n");
+    str += applicationStr_06 + "\n";
+    str += applicationStr_07 + "\n";
+    str += applicationStr_08 + "\n";
     if ($("#txtDetail").val() != "") {
-        str += ($("#txtDetail").val() + "<br/><br/>");
+        str += ($("#txtDetail").val() + "<br/><br/>" + "\n" + "\n");
     } else {
-        str += ("<br/>");
+        str += ("<br/>" + "\n");
     }   
     for (var i = 0; i < 10; i++) {
         var strQues =  $( "#txtInfo" + (i+1) ).val();
         if (strQues == "") {
             break;
         }
-        str += ( "&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;" + strQues + "<br/><br/>");
+        str += ( "&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;" + strQues + "<br/><br/>" + "\n" + "\n");
     }
-    str += applicationStr_09;
+    str += applicationStr_09 + "\n";
 
     if ( $( "#radioFeeCourtFee" ).is(":checked") ) {
-        str += applicationStr_10;
+        str += applicationStr_10 + "\n";
     } else if ( $( "#radioFeePostalOrder" ).is(":checked") ) {
-        str += applicationStr_11;
+        str += applicationStr_11 + "\n";
     } else if ( $( "#radioFeeDD" ).is(":checked") ) {
-        str += applicationStr_12;
+        str += applicationStr_12 + "\n";
     }
 
-    str += ("<br/>");
-    str += applicationStr_13;
-    str += ( $( "#txtName" ).val() );
+    str += ("<br/>" + "\n");
+    str += applicationStr_13 + "\n";
+    str += ( $( "#txtName" ).val() + "\n" );
 
-    str += ("</body></html>");
 
     return str;
 }
 
 function setSaveFile(contents, file_name, mime_type) {
-    /*
-    var a = document.getElementById('saveButton');
-    mime_type = mime_type || 'application/octet-stream'; // text/html, image/png, et c
-    if (file_name) a.setAttribute('download', file_name);
-    //a.href = 'data:'+ mime_type +';base64,'+ btoa(contents || '');
-	a.href = 'data:'+ mime_type + ';charset=utf-8,' + encodeURIComponent((contents) || '');
-		
-    a.click();
-    */
 
-    var blob = new Blob([contents], {type: "text/txt"});
-    //var converted = htmlDocx.asBlob(blob);
-    saveAs(blob, "rti.docx");
+    $.ajax({
+        type: "POST",
+        url: "api/htmltodocx.php",
+        data: {'data': contents}
+    }).done(function( msg ) {
+        console.log( "Data Saved: " + msg );
+        document.location = 'api/' + msg;
+    });
 
 }
 

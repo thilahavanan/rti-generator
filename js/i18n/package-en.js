@@ -168,7 +168,7 @@ var listDetails = [
     ""
 ];
 
-var applicationStr_01 = "<body><h3><center>Application for Information under the Right to Information Act, 2005</center></h3>";
+var applicationStr_01 = "<h3><center>Application for Information under the Right to Information Act, 2005</center></h3>";
 var applicationStr_02 = "<pre style='text-align:right'> Date:                             </pre>";
 var applicationStr_03 = "<h4>From</h4>";
 var applicationStr_04 = "<h4>To</h4>";
