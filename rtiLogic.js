@@ -22,7 +22,7 @@ var listSubjectsindex = 0
 function setup() {
 
     //console.log("setup");
-    
+
     $.localise(['package'], {language: currentLang, loadBase: false, path: ['', 'js/i18n/']});
     $("#langtxt").html ("Current Language:  " + (currentLang =='en'? englishLang : tamilLang ) );
     
@@ -356,6 +356,8 @@ function setSaveFile(contents, file_name, mime_type) {
 
 function toggleLang(){
     if (currentLang == 'en') {
+        currentLang = 'ta_IN'
+    }else if (currentLang == 'ta_IN'){
         currentLang = 'hi_IN'
     }else{
         currentLang = 'en'
