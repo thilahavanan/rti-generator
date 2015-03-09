@@ -34,7 +34,8 @@ var githubText = "github"
 //tip texts
 
 var englishLang = "English"
-var tamilLang = "Tamil"
+var tamilLang = "தமிழ்"
+var hindiLang = "हिंदी"
 var tipNameText = "<ol><li>You should be a Citizen of India to file RTI Application</li><li>Legal entities can't file RTI.</li><li>But its possible for a citizen to apply RTI through address of a legal entity.</li><li>Unfortunately, this application is applicable only to the following regions: Tamil Nadu, Kerala, West Bengal, Chandigarh, Delhi, Himachal Pradesh, Karnataka, Uttarakhand, Tripura, Mizoram, Puducherry, Meghalaya, Noida, Andaman and Nicobar, Goa, Jharkhand, Manipur, Nagaland </li></ol>"
 var tipAddr1Text = "Enter your Address Line 1"
 var tipAddr2Text = "Enter your Address Line 2"

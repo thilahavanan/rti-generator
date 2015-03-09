@@ -354,16 +354,10 @@ function setSaveFile(contents, file_name, mime_type) {
 }
 
 
-function toggleLang(){
-    if (currentLang == 'en') {
-        currentLang = 'ta_IN'
-    }else if (currentLang == 'ta_IN'){
-        currentLang = 'hi_IN'
-    }else{
-        currentLang = 'en'
-    }
-    setup(); 
-}
+$(".language").on('click', function(){
+   currentLang = this.id;
+   setup();
+});
 
 function loadFromLocalStorage(){
 	$('#hongkiat-form').find(':input').each(function(){

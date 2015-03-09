@@ -44,13 +44,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
             <header class="wrapper clearfix">
                 <h1 class="title">{{title}}</h1>
                 <h4 style="text-align: right"> {{tagLine}} <a href="https://docs.google.com/forms/d/1CKRwVQTTF0Z5hywUiqgFiG3d_Sf2ZTsi8YMhhudAClU/viewform">{{feedbackFormTxt}}</a> ::  <a href="http://grayfaceofindia.in/">{{backTxt}}</a> </h4>
+                <div style="text-align: right">
+                    <a href="#" class="language" id="en"> {{englishLng}} </a>
+                    <a href="#" class="language" id="ta_IN"> {{tamilLng}} </a>
+                    <a href="#" class="language" id="hi_IN"> {{hindiLng}} </a>
+                </div>
             </header>
         </div>
 
         <div class="main-container">
             <div class="main wrapper clearfix">
                 <article>
-                    <div id="langtxt"> {{currentLangTxt}}  </div> <a id="switchLang" href="#" onclick="toggleLang();"> {{switchLangTxt}} </a>
+                    <!--<div id="langtxt"> {{currentLangTxt}}  </div>-->
+                    <!--<a href="#" class="language" onclick="toggleLang();"> {{englishLng}} </a>
+                    <a href="#" class="language" onclick="toggleLang();"> {{tamilLng}} </a>
+                    <a href="#" class="language" onclick="toggleLang();"> {{hindiLng}} </a>-->
                     <form name="hongkiat" id="hongkiat-form" method="post" action="#">  
                         <h2>{{fromTxt}}</h2>
                         <section id="aligned">  
